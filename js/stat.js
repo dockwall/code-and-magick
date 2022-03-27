@@ -18,9 +18,9 @@ var cloudShadow = {
 
 var playerBar = {
   startPositionX: 155,
-  positionY: 100,
+  positionY: 250,
   width: 40,
-  height: 150,
+  height: -150,
   gap: 50,
   defaultRed: 'rgba(255, 0, 0, 1)',
 
@@ -60,9 +60,10 @@ window.renderStatistics = function (ctx, names, times) {
     return maxTime;
   };
 
+  var maxTime = findMaxTime();
   var barPositionX = playerBar.startPositionX;
 
-  for (var i = 0; i < times.length; i++) {
+  for (var i = 0; i < names.length; i++) {
 
     if (names[i] === 'Вы') {
       ctx.fillStyle = playerBar.defaultRed;
@@ -70,7 +71,9 @@ window.renderStatistics = function (ctx, names, times) {
       ctx.fillStyle = playerBar.getRandomBlue();
     }
 
-    ctx.fillRect(barPositionX, playerBar.positionY, playerBar.width, playerBar.height);
+    var currentHeight = Math.round(times[i] * playerBar.height) / maxTime;
+    ctx.fillRect(barPositionX, playerBar.positionY, playerBar.width, currentHeight);
+
     barPositionX += playerBar.width + playerBar.gap;
   }
 };
