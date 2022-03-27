@@ -28,4 +28,9 @@ var renderCloud = function (ctx, renderObject, isStroke) {
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, cloudShadow, false);
   renderCloud(ctx, cloudBody, true);
+
+  ctx.fillStyle = 'black';
+  ctx.font = '16px PT Mono';
+  ctx.fillText('Ура вы победили!', 240, 30);
+  ctx.fillText('Список результатов:', 230, 45);
 };
