@@ -46,7 +46,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = 'black';
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура вы победили!', 240, 30);
-  ctx.fillText('Список результатов:', 230, 45);
+  ctx.fillText('Список результатов:', 230, 46);
 
   var findMaxTime = function () {
     var maxTime = times[0];
@@ -73,6 +73,10 @@ window.renderStatistics = function (ctx, names, times) {
 
     var currentHeight = Math.round(times[i] * playerBar.height) / maxTime;
     ctx.fillRect(barPositionX, playerBar.positionY, playerBar.width, currentHeight);
+
+    ctx.fillStyle = 'black';
+    ctx.fillText(names[i], barPositionX, playerBar.positionY + 16);
+    ctx.fillText(Math.round(times[i]), barPositionX, playerBar.positionY + currentHeight - 8);
 
     barPositionX += playerBar.width + playerBar.gap;
   }
