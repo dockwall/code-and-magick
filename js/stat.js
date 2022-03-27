@@ -23,6 +23,11 @@ var playerBar = {
   height: 150,
   gap: 50,
   defaultRed: 'rgba(255, 0, 0, 1)',
+
+  getRandomBlue: function () {
+    var saturation = Math.floor(100 * Math.random());
+    return 'hsl(240, ' + saturation + '%' + ', 50%)';
+  },
 };
 
 var renderCloud = function (ctx, renderObject, isStroke) {
@@ -49,6 +54,8 @@ window.renderStatistics = function (ctx, names, times) {
 
     if (names[i] === 'Вы') {
       ctx.fillStyle = playerBar.defaultRed;
+    } else {
+      ctx.fillStyle = playerBar.getRandomBlue();
     }
 
     ctx.fillRect(barPositionX, playerBar.positionY, playerBar.width, playerBar.height);
