@@ -48,6 +48,18 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', 240, 30);
   ctx.fillText('Список результатов:', 230, 45);
 
+  var findMaxTime = function () {
+    var maxTime = times[0];
+
+    for (var i = 1; i < times.length; i++) {
+      if (times[i] > maxTime) {
+        maxTime = times[i];
+      }
+    }
+
+    return maxTime;
+  };
+
   var barPositionX = playerBar.startPositionX;
 
   for (var i = 0; i < times.length; i++) {
