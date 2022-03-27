@@ -25,7 +25,7 @@ var playerBar = {
   defaultRed: 'rgba(255, 0, 0, 1)',
 
   getRandomBlue: function () {
-    var saturation = Math.floor(100 * Math.random());
+    var saturation = Math.floor((100 + 1) * Math.random());
     return 'hsl(240, ' + saturation + '%' + ', 50%)';
   },
 };
