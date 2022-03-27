@@ -1,3 +1,31 @@
-'use strict'
+'use strict';
 
-window.renderStatistics = function (ctx, names, times) { };
+var cloudBody = {
+  color: 'white',
+  width: 420,
+  height: 270,
+  positionX: 100,
+  positionY: 10,
+};
+
+var cloudShadow = {
+  color: 'rgba(0, 0, 0, 0.7)',
+  width: cloudBody.width,
+  height: cloudBody.height,
+  positionX: cloudBody.positionX + 10,
+  positionY: cloudBody.positionY + 10,
+};
+
+var renderCloud = function (ctx, renderObject, isStroke) {
+  ctx.fillStyle = renderObject.color;
+  ctx.fillRect(renderObject.positionX, renderObject.positionY, renderObject.width, renderObject.height);
+
+  if (isStroke) {
+    ctx.strokeRect(renderObject.positionX, renderObject.positionY, renderObject.width, renderObject.height);
+  }
+};
+
+window.renderStatistics = function (ctx, names, times) {
+  renderCloud(ctx, cloudShadow, false);
+  renderCloud(ctx, cloudBody, true);
+};
