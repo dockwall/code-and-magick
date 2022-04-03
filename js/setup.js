@@ -14,18 +14,24 @@ var getRandomElement = function (array) {
   return array[randomIndex];
 };
 
-var generateWizards = function () {
+var generateWizardObject = function () {
+  var wizardObject = {
+    name: getRandomElement(NAMES) + ' ' + getRandomElement(SURNAMES),
+    coatColor: getRandomElement(COLORS),
+    eyesColor: getRandomElement(EYES),
+  };
+
+  return wizardObject;
+};
+
+var generateWizardsArray = function () {
   var wizardsArray = [];
 
   for (var i = 0; i < WIZARDS_COUNT; i++) {
-    wizardsArray[i] = {
-      name: getRandomElement(NAMES) + ' ' + getRandomElement(SURNAMES),
-      coatColor: getRandomElement(COLORS),
-      eyesColor: getRandomElement(EYES),
-    };
+    wizardsArray.push(generateWizardObject());
   }
 
   return wizardsArray;
 };
 
-var wizards = generateWizards();
+var wizards = generateWizardsArray();
