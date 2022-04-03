@@ -13,3 +13,19 @@ var getRandomElement = function (array) {
   var randomIndex = Math.floor(array.length * Math.random());
   return array[randomIndex];
 };
+
+var generateWizards = function () {
+  var wizardsArray = [];
+
+  for (var i = 0; i < WIZARDS_COUNT; i++) {
+    wizardsArray[i] = {
+      name: getRandomElement(NAMES) + ' ' + getRandomElement(SURNAMES),
+      coatColor: getRandomElement(COLORS),
+      eyesColor: getRandomElement(EYES),
+    };
+  }
+
+  return wizardsArray;
+};
+
+var wizards = generateWizards();
