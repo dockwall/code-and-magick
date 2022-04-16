@@ -6,6 +6,8 @@ var COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', '
 var EYES = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_COUNT = 4;
 
+var setupOpen = document.querySelector('.setup-open');
+
 var getRandomElement = function (array) {
   var randomIndex = Math.floor(array.length * Math.random());
   return array[randomIndex];
@@ -56,6 +58,3 @@ var showDOMElement = function (selector) {
 
 var wizards = generateWizardsArray();
 renderWizards(wizards);
-
-showDOMElement('.setup');
-showDOMElement('.setup-similar');
