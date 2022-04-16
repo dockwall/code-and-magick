@@ -20,6 +20,18 @@ var onDocumentEscPress = function (evt) {
   }
 };
 
+var onSetupOpenButtonEnterPress = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    onSetupOpenButtonClick();
+  }
+};
+
+var onSetupCloseButtonEnterPress = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    onSetupCloseButtonClick();
+  }
+};
+
 var onSetupOpenButtonClick = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentEscPress);
@@ -77,4 +89,6 @@ var wizards = generateWizardsArray();
 renderWizards(wizards);
 
 setupOpenButton.addEventListener('click', onSetupOpenButtonClick);
+setupOpenButton.addEventListener('keydown', onSetupOpenButtonEnterPress);
 setupCloseButton.addEventListener('click', onSetupCloseButtonClick);
+setupCloseButton.addEventListener('keydown', onSetupCloseButtonEnterPress);
