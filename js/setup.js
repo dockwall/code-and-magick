@@ -35,11 +35,15 @@ var onSetupCloseButtonEnterPress = function (evt) {
 var onSetupOpenButtonClick = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentEscPress);
+  setupCloseButton.addEventListener('click', onSetupCloseButtonClick);
+  setupCloseButton.addEventListener('keydown', onSetupCloseButtonEnterPress);
 };
 
 var onSetupCloseButtonClick = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onDocumentEscPress);
+  setupCloseButton.removeEventListener('click', onSetupCloseButtonClick);
+  setupCloseButton.removeEventListener('keydown', onSetupCloseButtonEnterPress);
 };
 
 var getRandomElement = function (array) {
@@ -90,5 +94,3 @@ renderWizards(wizards);
 
 setupOpenButton.addEventListener('click', onSetupOpenButtonClick);
 setupOpenButton.addEventListener('keydown', onSetupOpenButtonEnterPress);
-setupCloseButton.addEventListener('click', onSetupCloseButtonClick);
-setupCloseButton.addEventListener('keydown', onSetupCloseButtonEnterPress);
