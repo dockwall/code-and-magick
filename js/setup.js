@@ -6,9 +6,17 @@ var COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', '
 var EYES = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_COUNT = 4;
 
-var setupPopup = document.querySelector('.setup');
-var setupPopupOpenButton = document.querySelector('.setup-open');
-var setupPopupCloseButton = setupPopup.querySelector('.setup-close');
+var setup = document.querySelector('.setup');
+var setupOpenButton = document.querySelector('.setup-open');
+var setupCloseButton = setup.querySelector('.setup-close');
+
+var onSetupOpenButtonClick = function () {
+  setup.classList.remove('hidden');
+};
+
+var onSetupCloseButtonClick = function () {
+  setup.classList.add('hidden');
+};
 
 var getRandomElement = function (array) {
   var randomIndex = Math.floor(array.length * Math.random());
@@ -53,18 +61,8 @@ var renderWizards = function (wizardsArray) {
   similarWizardsDOM.appendChild(wizardsFragment);
 };
 
-var showDOMElement = function (selector) {
-  var element = document.querySelector(selector);
-  element.classList.remove('hidden');
-};
-
 var wizards = generateWizardsArray();
 renderWizards(wizards);
 
-setupPopupOpenButton.addEventListener('click', function () {
-  setupPopup.classList.remove('hidden');
-});
-
-setupPopupCloseButton.addEventListener('click', function () {
-  setupPopup.classList.add('hidden');
-});
+setupOpenButton.addEventListener('click', onSetupOpenButtonClick);
+setupCloseButton.addEventListener('click', onSetupCloseButtonClick);
