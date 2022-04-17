@@ -1,7 +1,9 @@
 'use strict';
 
-var ESC_KEYCODE = 27;
-var ENTER_KEYCODE = 13;
+var KEY_CODES = {
+  ESC: 27,
+  ENTER: 13,
+};
 
 var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -15,19 +17,19 @@ var setupCloseButton = setup.querySelector('.setup-close');
 var setupNameInput = setup.querySelector('.setup-user-name');
 
 var onDocumentEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE && evt.target !== setupNameInput) {
+  if (evt.keyCode === KEY_CODES.ESC && evt.target !== setupNameInput) {
     onSetupCloseButtonClick();
   }
 };
 
 var onSetupOpenButtonEnterPress = function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
+  if (evt.keyCode === KEY_CODES.ENTER) {
     onSetupOpenButtonClick();
   }
 };
 
 var onSetupCloseButtonEnterPress = function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
+  if (evt.keyCode === KEY_CODES.ENTER) {
     onSetupCloseButtonClick();
   }
 };
