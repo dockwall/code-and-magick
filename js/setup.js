@@ -47,6 +47,10 @@ var setup = document.querySelector('.setup');
 var setupOpenButton = document.querySelector('.setup-open');
 var setupCloseButton = setup.querySelector('.setup-close');
 var setupNameInput = setup.querySelector('.setup-user-name');
+var setupSimilarWizards = setup.querySelector('.setup-similar');
+var setupSimilarWizardsList = setupSimilarWizards.querySelector('.setup-similar-list');
+var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+
 
 var onDocumentEscPress = function (evt) {
   if (evt.keyCode === KEY_CODES.ESC && evt.target !== setupNameInput) {
@@ -68,6 +72,7 @@ var onSetupCloseButtonEnterPress = function (evt) {
 
 var onSetupOpenButtonClick = function () {
   setup.classList.remove('hidden');
+  setupSimilarWizards.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentEscPress);
   setupCloseButton.addEventListener('click', onSetupCloseButtonClick);
   setupCloseButton.addEventListener('keydown', onSetupCloseButtonEnterPress);
@@ -75,6 +80,7 @@ var onSetupOpenButtonClick = function () {
 
 var onSetupCloseButtonClick = function () {
   setup.classList.add('hidden');
+  setupSimilarWizards.classList.add('hidden');
   document.removeEventListener('keydown', onDocumentEscPress);
   setupCloseButton.removeEventListener('click', onSetupCloseButtonClick);
   setupCloseButton.removeEventListener('keydown', onSetupCloseButtonEnterPress);
@@ -106,12 +112,10 @@ var generateWizardsArray = function () {
 };
 
 var renderWizards = function (wizardsArray) {
-  var wizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-  var similarWizardsDOM = document.querySelector('.setup-similar-list');
   var wizardsFragment = document.createDocumentFragment();
 
   for (var i = 0; i < wizardsArray.length; i++) {
-    var wizardElement = wizardTemplate.cloneNode(true);
+    var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizardsArray[i].name;
     wizardElement.querySelector('.wizard-coat').style.fill = wizardsArray[i].coatColor;
@@ -120,7 +124,7 @@ var renderWizards = function (wizardsArray) {
     wizardsFragment.appendChild(wizardElement);
   }
 
-  similarWizardsDOM.appendChild(wizardsFragment);
+  setupSimilarWizardsList.appendChild(wizardsFragment);
 };
 
 var wizards = generateWizardsArray();
