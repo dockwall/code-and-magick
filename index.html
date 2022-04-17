@@ -101,6 +101,7 @@
               <input
                 type="text"
                 name="username"
+                minlength="2"
                 maxlength="25"
                 required
                 class="setup-user-name"
@@ -152,13 +153,28 @@
                 </g>
               </svg>
             </div>
-            <input type="hidden" name="coat-color" value="rgb(101, 137, 164)" />
-            <input type="hidden" name="eyes-color" value="black" />
+            <input
+              type="hidden"
+              id="coat-color"
+              name="coat-color"
+              value="rgb(101, 137, 164)"
+            />
+            <input
+              type="hidden"
+              id="eyes-color"
+              name="eyes-color"
+              value="black"
+            />
           </div>
 
           <div class="setup-fireball-wrap">
             <div class="setup-fireball"></div>
-            <input type="hidden" name="fireball-color" value="#ee4830" />
+            <input
+              type="hidden"
+              id="fireball-color"
+              name="fireball-color"
+              value="#ee4830"
+            />
           </div>
 
           <div class="setup-artifacts" dropzone="move">
