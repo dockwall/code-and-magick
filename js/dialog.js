@@ -1,20 +1,40 @@
 'use strict';
 
-var dialogDrag = document.querySelector('.upload');
+var setup = document.querySelector('.setup');
+var dialogDrag = setup.querySelector('.upload');
 
-var onDialogDragMousemove = function () {
-  console.log('mousemove');
-};
+dialogDrag.addEventListener('mousedown', function (evt) {
+  evt.preventDefault();
 
-var onDialogDragMouseup = function () {
-  document.removeEventListener('mousemove', onDialogDragMousemove);
-  dialogDrag.removeEventListener('mouseup', onDialogDragMouseup);
-  console.log('mouseup');
-};
+  var startCoordinates = {
+    x: evt.clientX,
+    y: evt.clientY,
+  };
 
-dialogDrag.addEventListener('mousedown', function () {
-  console.log('mousedown');
+  var onDialogDragMouseMove = function (mouseMoveEvt) {
+    mouseMoveEvt.preventDefault();
 
-  document.addEventListener('mousemove', onDialogDragMousemove);
-  document.addEventListener('mouseup', onDialogDragMouseup);
+    var shiftCoordinates = {
+      x: startCoordinates.x - mouseMoveEvt.clientX,
+      y: startCoordinates.y - mouseMoveEvt.clientY,
+    };
+
+    startCoordinates = {
+      x: mouseMoveEvt.clientX,
+      y: mouseMoveEvt.clientY,
+    };
+
+    setup.style.top = (setup.offsetTop - shiftCoordinates.y) + 'px';
+    setup.style.left = (setup.offsetLeft - shiftCoordinates.x) + 'px';
+  };
+
+  var onDialogDragMouseUp = function (mouseUpEvt) {
+    mouseUpEvt.preventDefault();
+
+    document.removeEventListener('mousemove', onDialogDragMouseMove);
+    document.removeEventListener('mouseup', onDialogDragMouseUp);
+  };
+
+  document.addEventListener('mousemove', onDialogDragMouseMove);
+  document.addEventListener('mouseup', onDialogDragMouseUp);
 });
