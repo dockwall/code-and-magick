@@ -1,9 +1,20 @@
 'use strict';
 
 var setup = document.querySelector('.setup');
-var dialogDrag = setup.querySelector('.upload');
+var setupDrag = setup.querySelector('.upload');
+var setupOpenButton = document.querySelector('.setup-open');
+var setupCloseButton = setup.querySelector('.setup-close');
 
-dialogDrag.addEventListener('mousedown', function (evt) {
+var onOpenButtonClick = function () {
+  setupCloseButton.addEventListener('click', onCloseButtonClickResetPosition);
+};
+
+var onCloseButtonClickResetPosition = function () {
+  setup.removeAttribute('style');
+  setupCloseButton.removeEventListener('click', onCloseButtonClickResetPosition);
+};
+
+setupDrag.addEventListener('mousedown', function (evt) {
   evt.preventDefault();
 
   var startCoordinates = {
@@ -13,7 +24,7 @@ dialogDrag.addEventListener('mousedown', function (evt) {
 
   var isDragged = false;
 
-  var onDialogDragMouseMove = function (mouseMoveEvt) {
+  var onSetupDragMouseMove = function (mouseMoveEvt) {
     mouseMoveEvt.preventDefault();
 
     var shiftCoordinates = {
@@ -32,22 +43,24 @@ dialogDrag.addEventListener('mousedown', function (evt) {
     setup.style.left = (setup.offsetLeft - shiftCoordinates.x) + 'px';
   };
 
-  var onDialogDragMouseUp = function (mouseUpEvt) {
+  var onSetupDragMouseUp = function (mouseUpEvt) {
     mouseUpEvt.preventDefault();
 
     if (isDragged) {
-      var onDialogDragClickPreventDefault = function (clickEvt) {
+      var onSetupDragClickPreventDefault = function (clickEvt) {
         clickEvt.preventDefault();
-        dialogDrag.removeEventListener('click', onDialogDragClickPreventDefault);
+        setupDrag.removeEventListener('click', onSetupDragClickPreventDefault);
       };
 
-      dialogDrag.addEventListener('click', onDialogDragClickPreventDefault);
+      setupDrag.addEventListener('click', onSetupDragClickPreventDefault);
     }
 
-    document.removeEventListener('mousemove', onDialogDragMouseMove);
-    document.removeEventListener('mouseup', onDialogDragMouseUp);
+    document.removeEventListener('mousemove', onSetupDragMouseMove);
+    document.removeEventListener('mouseup', onSetupDragMouseUp);
   };
 
-  document.addEventListener('mousemove', onDialogDragMouseMove);
-  document.addEventListener('mouseup', onDialogDragMouseUp);
+  document.addEventListener('mousemove', onSetupDragMouseMove);
+  document.addEventListener('mouseup', onSetupDragMouseUp);
 });
+
+setupOpenButton.addEventListener('click', onOpenButtonClick);
