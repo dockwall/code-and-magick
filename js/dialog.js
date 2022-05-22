@@ -1,18 +1,15 @@
 'use strict';
 
 (function () {
-  var setup = document.querySelector('.setup');
-  var setupDrag = setup.querySelector('.upload');
-  var setupOpenButton = document.querySelector('.setup-open');
-  var setupCloseButton = setup.querySelector('.setup-close');
+  var setupDrag = window.constants.setup.querySelector('.upload');
 
   var onOpenButtonClick = function () {
-    setupCloseButton.addEventListener('click', onCloseButtonClickResetPosition);
+    window.constants.setupCloseButton.addEventListener('click', onCloseButtonClickResetPosition);
   };
 
   var onCloseButtonClickResetPosition = function () {
-    setup.removeAttribute('style');
-    setupCloseButton.removeEventListener('click', onCloseButtonClickResetPosition);
+    window.constants.setup.removeAttribute('style');
+    window.constants.setupCloseButton.removeEventListener('click', onCloseButtonClickResetPosition);
   };
 
   setupDrag.addEventListener('mousedown', function (evt) {
@@ -40,8 +37,8 @@
 
       isDragged = true;
 
-      setup.style.top = (setup.offsetTop - shiftCoordinates.y) + 'px';
-      setup.style.left = (setup.offsetLeft - shiftCoordinates.x) + 'px';
+      window.constants.setup.style.top = (window.constants.setup.offsetTop - shiftCoordinates.y) + 'px';
+      window.constants.setup.style.left = (window.constants.setup.offsetLeft - shiftCoordinates.x) + 'px';
     };
 
     var onSetupDragMouseUp = function (mouseUpEvt) {
@@ -64,5 +61,5 @@
     document.addEventListener('mouseup', onSetupDragMouseUp);
   });
 
-  setupOpenButton.addEventListener('click', onOpenButtonClick);
+  window.constants.setupOpenButton.addEventListener('click', onOpenButtonClick);
 })();

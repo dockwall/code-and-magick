@@ -51,10 +51,14 @@
     WIZARDS_COUNT: 4,
   };
 
+  var setup = document.querySelector('.setup');
+
   window.constants = {
     keyCodes: KEY_CODES,
     options: OPTIONS,
-    setup: document.querySelector('.setup'),
+    setup: setup,
+    setupOpenButton: document.querySelector('.setup-open'),
+    setupCloseButton: setup.querySelector('.setup-close'),
     similarWizardTemplate: document.querySelector('#similar-wizard-template').content,
   };
 })();
