@@ -54,5 +54,7 @@
   window.constants = {
     keyCodes: KEY_CODES,
     options: OPTIONS,
+    setup: document.querySelector('.setup'),
+    similarWizardTemplate: document.querySelector('#similar-wizard-template').content,
   };
 })();

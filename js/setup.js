@@ -1,20 +1,22 @@
 'use strict';
 
 (function () {
-  var setup = document.querySelector('.setup');
   var setupOpenButton = document.querySelector('.setup-open');
-  var setupCloseButton = setup.querySelector('.setup-close');
-  var setupNameInput = setup.querySelector('.setup-user-name');
-  var setupWizard = setup.querySelector('.setup-player');
+  var setupCloseButton = window.constants.setup.querySelector('.setup-close');
+
+  var setupNameInput = window.constants.setup.querySelector('.setup-user-name');
+  var setupWizard = window.constants.setup.querySelector('.setup-player');
+
   var setupFireball = setupWizard.querySelector('.setup-fireball-wrap');
   var setupFireballInput = setupFireball.querySelector('#fireball-color');
   var setupWizardCoat = setupWizard.querySelector('.wizard-coat');
   var setupWizardCoatInput = setupWizard.querySelector('#coat-color');
   var setupWizardEyes = setupWizard.querySelector('.wizard-eyes');
   var setupWizardEyesInput = setupWizard.querySelector('#eyes-color');
-  var setupSimilarWizards = setup.querySelector('.setup-similar');
+
+  var setupSimilarWizards = window.constants.setup.querySelector('.setup-similar');
   var setupSimilarWizardsList = setupSimilarWizards.querySelector('.setup-similar-list');
-  var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+  var similarWizardTemplate = window.constants.similarWizardTemplate.querySelector('.setup-similar-item');
 
   var onDocumentEscPress = function (evt) {
     if (evt.keyCode === window.constants.keyCodes.ESC && evt.target !== setupNameInput) {
@@ -35,7 +37,7 @@
   };
 
   var onSetupOpenButtonClick = function () {
-    setup.classList.remove('hidden');
+    window.constants.setup.classList.remove('hidden');
     setupSimilarWizards.classList.remove('hidden');
     document.addEventListener('keydown', onDocumentEscPress);
     setupCloseButton.addEventListener('click', onSetupCloseButtonClick);
@@ -43,7 +45,7 @@
   };
 
   var onSetupCloseButtonClick = function () {
-    setup.classList.add('hidden');
+    window.constants.setup.classList.add('hidden');
     setupSimilarWizards.classList.add('hidden');
     document.removeEventListener('keydown', onDocumentEscPress);
     setupCloseButton.removeEventListener('click', onSetupCloseButtonClick);
@@ -73,26 +75,6 @@
     return array[randomIndex];
   };
 
-  var generateWizardObject = function () {
-    var wizardObject = {
-      name: getRandomElement(window.constants.options.NAMES) + ' ' + getRandomElement(window.constants.options.SURNAMES),
-      coatColor: getRandomElement(window.constants.options.COAT_COLORS),
-      eyesColor: getRandomElement(window.constants.options.EYES),
-    };
-
-    return wizardObject;
-  };
-
-  var generateWizardsArray = function () {
-    var wizardsArray = [];
-
-    for (var i = 0; i < window.constants.options.WIZARDS_COUNT; i++) {
-      wizardsArray.push(generateWizardObject());
-    }
-
-    return wizardsArray;
-  };
-
   var renderWizards = function (wizardsArray) {
     var wizardsFragment = document.createDocumentFragment();
 
@@ -109,7 +91,7 @@
     setupSimilarWizardsList.appendChild(wizardsFragment);
   };
 
-  renderWizards(generateWizardsArray());
+  renderWizards(window.data.similarWizardsArray);
 
   setupOpenButton.addEventListener('click', onSetupOpenButtonClick);
   setupOpenButton.addEventListener('keydown', onSetupOpenButtonEnterPress);
