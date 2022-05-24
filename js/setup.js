@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var form = window.constants.setup.querySelector('.setup-wizard-form');
   var setupNameInput = window.constants.setup.querySelector('.setup-user-name');
   var similarWizardTemplate = window.constants.similarWizardTemplate.querySelector('.setup-similar-item');
   var setupSimilarWizards = window.constants.setup.querySelector('.setup-similar');
@@ -40,6 +41,16 @@
     window.constants.setupCloseButton.removeEventListener('keydown', onSetupCloseButtonEnterPress);
   };
 
+  var onFormSubmit = function (evt) {
+    var formData = new FormData(form);
+
+    window.backend.save(formData, onSetupCloseButtonClick, function (errorText) {
+      console.log(errorText);
+    });
+
+    evt.preventDefault();
+  };
+
   var renderWizards = function (wizardsArray) {
     var wizardsFragment = document.createDocumentFragment();
 
@@ -60,4 +71,6 @@
 
   window.constants.setupOpenButton.addEventListener('click', onSetupOpenButtonClick);
   window.constants.setupOpenButton.addEventListener('keydown', onSetupOpenButtonEnterPress);
+
+  form.addEventListener('submit', onFormSubmit);
 })();
