@@ -25,7 +25,5 @@
     setupSimilarWizards.classList.remove('hidden');
   };
 
-  window.backend.load(onSuccess, function (errorText) {
-    console.log(errorText);
-  });
+  window.backend.load(onSuccess, window.error.showError);
 })();

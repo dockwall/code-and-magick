@@ -39,9 +39,7 @@
   var onFormSubmit = function (evt) {
     var formData = new FormData(form);
 
-    window.backend.save(formData, onSetupCloseButtonClick, function (errorText) {
-      console.log(errorText);
-    });
+    window.backend.save(formData, onSetupCloseButtonClick, window.error.showError);
 
     evt.preventDefault();
   };
