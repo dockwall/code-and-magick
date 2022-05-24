@@ -37,7 +37,7 @@
 
     xhr.addEventListener('load', function (evt) {
       if (evt.target.status === 200) {
-        onLoad();
+        onLoad(evt.target.response);
       } else {
         onError('Статус ответа:' + evt.target.status + '. ' + evt.target.statusText);
       }
