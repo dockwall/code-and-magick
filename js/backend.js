@@ -29,7 +29,7 @@
   };
 
   var load = function (onLoad, onError) {
-    var URL = 'https://22.javascript.pages.academy/keksobooking/data';
+    var URL = 'https://22.javascript.pages.academy/code-and-magick/data';
 
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
