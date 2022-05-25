@@ -7,25 +7,6 @@
   };
 
   var OPTIONS = {
-    NAMES: [
-      'Иван',
-      'Хуан Себастьян',
-      'Мария', 'Кристоф',
-      'Виктор',
-      'Юлия',
-      'Люпита',
-      'Вашингтон'
-    ],
-    SURNAMES: [
-      'да Марья',
-      'Верон',
-      'Мирабелла',
-      'Вальц',
-      'Онопко',
-      'Топольницкая',
-      'Нионго',
-      'Ирвинг'
-    ],
     COAT_COLORS: [
       'rgb(101, 137, 164)',
       'rgb(241, 43, 107)',
@@ -59,6 +40,6 @@
     setup: setup,
     setupOpenButton: document.querySelector('.setup-open'),
     setupCloseButton: setup.querySelector('.setup-close'),
-    similarWizardTemplate: document.querySelector('#similar-wizard-template').content,
+    similarWizardTemplate: document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item'),
   };
 })();
