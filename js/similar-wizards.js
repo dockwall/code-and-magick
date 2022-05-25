@@ -16,9 +16,14 @@
 
   var onSuccess = function (response) {
     var wizardsFragment = document.createDocumentFragment();
+    var responseCopy = response.slice();
 
     for (var i = 0; i < 4; i++) {
-      wizardsFragment.appendChild(renderWizard(response[i]));
+      var randomSimilarWizard = window.utils.getRandomFromArray(responseCopy);
+      var indexOfSimilarWizard = responseCopy.indexOf(randomSimilarWizard);
+
+      wizardsFragment.appendChild(renderWizard(randomSimilarWizard));
+      responseCopy.splice(indexOfSimilarWizard, 1);
     }
 
     setupSimilarWizardsList.appendChild(wizardsFragment);
